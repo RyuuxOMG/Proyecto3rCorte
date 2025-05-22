@@ -22,7 +22,6 @@ public class Sky extends SpriteContainer implements GraphicContainer {
     private int score;
     private int foodAmount = 0;
     private int poisonAmount = 0;
-    ArrayList<Sprite> spriteCopy = new ArrayList<>(sprites);
     private BufferedImage image;
 
     public Sky(String path, int x, int y, int height, int width) {
@@ -115,5 +114,11 @@ public class Sky extends SpriteContainer implements GraphicContainer {
         poison.startMovement();
         this.poisonAmount++;
         return poison;
+    }
+
+    public ArrayList<Sprite> getSpriteCopy() {
+        synchronized (sprites) {
+            return new ArrayList<>(sprites);
+        }
     }
 }
